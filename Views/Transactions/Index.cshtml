@@ -2,12 +2,16 @@
 
 @{
     ViewData["Title"] = "Index";
+    bool isAuthenticated = User.Identity.IsAuthenticated;
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    @if (isAuthenticated)
+    {
+        <a asp-action="Create">Create New</a>
+    }
 </p>
 <table class="table">
     <thead>
@@ -66,11 +70,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Comment)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a> |
+                @if (isAuthenticated)
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.TransactionID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.TransactionID">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.TransactionID">Delete</a>
             </td>
+            }
         </tr>
 }
     </tbody>
