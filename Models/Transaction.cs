@@ -13,20 +13,20 @@ namespace SchoolShare.Models
 
         // FK to User for the lender
         [ForeignKey("LenderID")]
-        public int LenderID { get; set; }
+        public int? LenderID { get; set; }
 
-        public virtual User Lender { get; set; }
+        public virtual User? Lender { get; set; }
 
         // FK to User for the borrower
-        public int BorrowerID { get; set; }
+        public int? BorrowerID { get; set; }
         [ForeignKey("BorrowerID")]
-        public virtual User Borrower { get; set; }
+        public virtual User? Borrower { get; set; }
 
         // FK to Item being borrowed
         [ForeignKey("ItemID")]
-        public int ItemID { get; set; }
+        public int? ItemID { get; set; }
 
-        public virtual Item Item { get; set; }
+        public virtual Item? Item { get; set; }
 
         [Required]
         public DateTime StartDate { get; set; } // When the item was borrowed

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace schoolshare.Controllers
 {
+    [Authorize] 
     public class ItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,6 +22,7 @@ namespace schoolshare.Controllers
         }
 
         // GET: Items
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Item.Include(i => i.Category).Include(i => i.CurrentBorrower).Include(i => i.Owner);

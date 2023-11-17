@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace schoolshare.Controllers
 {
+
+
+    [Authorize]
     public class ItemCategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,6 +24,7 @@ namespace schoolshare.Controllers
         }
 
         // GET: ItemCategories
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
               return _context.ItemCategory != null ? 

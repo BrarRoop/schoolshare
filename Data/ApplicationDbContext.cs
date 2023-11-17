@@ -15,5 +15,7 @@ namespace schoolshare.Data
         public DbSet<SchoolShare.Models.Notification> Notification { get; set; } = default!;
         public DbSet<SchoolShare.Models.Rating> Rating { get; set; } = default!;
         public DbSet<SchoolShare.Models.Transaction> Transaction { get; set; } = default!;
+        public DbSet<SchoolShare.Models.User> User { get; set; } = default!;
+
     }
 }

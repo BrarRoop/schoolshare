@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace schoolshare.Migrations
 {
     /// <inheritdoc />
-    public partial class firstmigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -196,8 +196,8 @@ namespace schoolshare.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
-                    OwnerID = table.Column<int>(type: "int", nullable: false),
-                    CurrentBorrowerID = table.Column<int>(type: "int", nullable: false),
+                    OwnerID = table.Column<int>(type: "int", nullable: true),
+                    CurrentBorrowerID = table.Column<int>(type: "int", nullable: true),
                     BorrowPeriod = table.Column<int>(type: "int", nullable: false),
                     SecurityDeposit = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -216,14 +216,12 @@ namespace schoolshare.Migrations
                         name: "FK_Item_User_CurrentBorrowerID",
                         column: x => x.CurrentBorrowerID,
                         principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                     table.ForeignKey(
                         name: "FK_Item_User_OwnerID",
                         column: x => x.OwnerID,
                         principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
@@ -232,7 +230,7 @@ namespace schoolshare.Migrations
                 {
                     NotificationID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RecipientID = table.Column<int>(type: "int", nullable: false),
+                    RecipientID = table.Column<int>(type: "int", nullable: true),
                     Message = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     IsRead = table.Column<bool>(type: "bit", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -244,8 +242,7 @@ namespace schoolshare.Migrations
                         name: "FK_Notification_User_RecipientID",
                         column: x => x.RecipientID,
                         principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
@@ -254,9 +251,9 @@ namespace schoolshare.Migrations
                 {
                     TransactionID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LenderID = table.Column<int>(type: "int", nullable: false),
-                    BorrowerID = table.Column<int>(type: "int", nullable: false),
-                    ItemID = table.Column<int>(type: "int", nullable: false),
+                    LenderID = table.Column<int>(type: "int", nullable: true),
+                    BorrowerID = table.Column<int>(type: "int", nullable: true),
+                    ItemID = table.Column<int>(type: "int", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ExpectedEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ActualEndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -270,20 +267,17 @@ namespace schoolshare.Migrations
                         name: "FK_Transaction_Item_ItemID",
                         column: x => x.ItemID,
                         principalTable: "Item",
-                        principalColumn: "ItemID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ItemID");
                     table.ForeignKey(
                         name: "FK_Transaction_User_BorrowerID",
                         column: x => x.BorrowerID,
                         principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                     table.ForeignKey(
                         name: "FK_Transaction_User_LenderID",
                         column: x => x.LenderID,
                         principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateTable(
@@ -292,9 +286,9 @@ namespace schoolshare.Migrations
                 {
                     RatingID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RaterID = table.Column<int>(type: "int", nullable: false),
-                    RateeID = table.Column<int>(type: "int", nullable: false),
-                    TransactionID = table.Column<int>(type: "int", nullable: false),
+                    RaterID = table.Column<int>(type: "int", nullable: true),
+                    RateeID = table.Column<int>(type: "int", nullable: true),
+                    TransactionID = table.Column<int>(type: "int", nullable: true),
                     Score = table.Column<float>(type: "real", nullable: false),
                     Comment = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
@@ -305,20 +299,17 @@ namespace schoolshare.Migrations
                         name: "FK_Rating_Transaction_TransactionID",
                         column: x => x.TransactionID,
                         principalTable: "Transaction",
-                        principalColumn: "TransactionID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "TransactionID");
                     table.ForeignKey(
                         name: "FK_Rating_User_RateeID",
                         column: x => x.RateeID,
                         principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                     table.ForeignKey(
                         name: "FK_Rating_User_RaterID",
                         column: x => x.RaterID,
                         principalTable: "User",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateIndex(

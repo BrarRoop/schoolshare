@@ -11,22 +11,22 @@ namespace SchoolShare.Models
         public int RatingID { get; set; }
 
         // FK to User for the rater
-        public int RaterID { get; set; }
+        public int? RaterID { get; set; }
 
         [ForeignKey("RaterID")]
-        public virtual User Rater { get; set; }
+        public virtual User? Rater { get; set; }
 
         // FK to User for the ratee
-        public int RateeID { get; set; }
+        public int? RateeID { get; set; }
 
         [ForeignKey("RateeID")]
-        public virtual User Ratee { get; set; }
+        public virtual User? Ratee { get; set; }
 
         // FK to Transaction
-        public int TransactionID { get; set; }
+        public int? TransactionID { get; set; }
 
         [ForeignKey("TransactionID")]
-        public virtual Transaction Transaction { get; set; }
+        public virtual Transaction? Transaction { get; set; }
 
         [Range(1, 5)] // Ratings usually start from 1, but adjust if 0 is a valid score
         public float Score { get; set; }

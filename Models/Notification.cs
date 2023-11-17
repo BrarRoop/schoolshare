@@ -12,9 +12,9 @@ namespace SchoolShare.Models
         public int NotificationID { get; set; }
 
         // FK to User for the recipient
-        public int RecipientID { get; set; }
+        public int? RecipientID { get; set; }
         [ForeignKey("RecipientID")]
-        public virtual User Recipient { get; set; }
+        public virtual User? Recipient { get; set; }
 
         [Required]
         [StringLength(1000)]

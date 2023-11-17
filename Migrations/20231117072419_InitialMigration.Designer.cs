@@ -12,8 +12,8 @@ using schoolshare.Data;
 namespace schoolshare.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231116210659_first migration")]
-    partial class firstmigration
+    [Migration("20231117072419_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -242,7 +242,6 @@ namespace schoolshare.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("CurrentBorrowerID")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -259,7 +258,7 @@ namespace schoolshare.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("OwnerID")
+                    b.Property<int?>("OwnerID")
                         .HasColumnType("int");
 
                     b.Property<decimal?>("SecurityDeposit")
@@ -316,7 +315,7 @@ namespace schoolshare.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<int>("RecipientID")
+                    b.Property<int?>("RecipientID")
                         .HasColumnType("int");
 
                     b.HasKey("NotificationID");
@@ -339,16 +338,16 @@ namespace schoolshare.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<int>("RateeID")
+                    b.Property<int?>("RateeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("RaterID")
+                    b.Property<int?>("RaterID")
                         .HasColumnType("int");
 
                     b.Property<float>("Score")
                         .HasColumnType("real");
 
-                    b.Property<int>("TransactionID")
+                    b.Property<int?>("TransactionID")
                         .HasColumnType("int");
 
                     b.HasKey("RatingID");
@@ -373,7 +372,7 @@ namespace schoolshare.Migrations
                     b.Property<DateTime?>("ActualEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("BorrowerID")
+                    b.Property<int?>("BorrowerID")
                         .HasColumnType("int");
 
                     b.Property<string>("Comment")
@@ -384,10 +383,10 @@ namespace schoolshare.Migrations
                     b.Property<DateTime>("ExpectedEndDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("ItemID")
+                    b.Property<int?>("ItemID")
                         .HasColumnType("int");
 
-                    b.Property<int>("LenderID")
+                    b.Property<int?>("LenderID")
                         .HasColumnType("int");
 
                     b.Property<float?>("RatingGiven")
@@ -505,15 +504,11 @@ namespace schoolshare.Migrations
 
                     b.HasOne("SchoolShare.Models.User", "CurrentBorrower")
                         .WithMany()
-                        .HasForeignKey("CurrentBorrowerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CurrentBorrowerID");
 
                     b.HasOne("SchoolShare.Models.User", "Owner")
                         .WithMany()
-                        .HasForeignKey("OwnerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OwnerID");
 
                     b.Navigation("Category");
 
@@ -526,9 +521,7 @@ namespace schoolshare.Migrations
                 {
                     b.HasOne("SchoolShare.Models.User", "Recipient")
                         .WithMany()
-                        .HasForeignKey("RecipientID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RecipientID");
 
                     b.Navigation("Recipient");
                 });
@@ -537,21 +530,15 @@ namespace schoolshare.Migrations
                 {
                     b.HasOne("SchoolShare.Models.User", "Ratee")
                         .WithMany()
-                        .HasForeignKey("RateeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RateeID");
 
                     b.HasOne("SchoolShare.Models.User", "Rater")
                         .WithMany()
-                        .HasForeignKey("RaterID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RaterID");
 
                     b.HasOne("SchoolShare.Models.Transaction", "Transaction")
                         .WithMany()
-                        .HasForeignKey("TransactionID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TransactionID");
 
                     b.Navigation("Ratee");
 
@@ -564,21 +551,15 @@ namespace schoolshare.Migrations
                 {
                     b.HasOne("SchoolShare.Models.User", "Borrower")
                         .WithMany()
-                        .HasForeignKey("BorrowerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BorrowerID");
 
                     b.HasOne("SchoolShare.Models.Item", "Item")
                         .WithMany()
-                        .HasForeignKey("ItemID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ItemID");
 
                     b.HasOne("SchoolShare.Models.User", "Lender")
                         .WithMany()
-                        .HasForeignKey("LenderID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LenderID");
 
                     b.Navigation("Borrower");
 

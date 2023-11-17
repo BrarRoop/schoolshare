@@ -30,14 +30,14 @@ namespace SchoolShare.Models
         public virtual ItemCategory Category { get; set; }
 
         // FK to User for owner of the item
-        public int OwnerID { get; set; }
+        public int? OwnerID { get; set; }
         [ForeignKey("OwnerID")]
-        public virtual User Owner { get; set; }
+        public virtual User? Owner { get; set; }
 
         // FK to User for current borrower, can be nullable
         public int? CurrentBorrowerID { get; set; }
         [ForeignKey("CurrentBorrowerID")]
-        public virtual User CurrentBorrower { get; set; }
+        public virtual User? CurrentBorrower { get; set; }
 
         public int BorrowPeriod { get; set; } // in days
 
