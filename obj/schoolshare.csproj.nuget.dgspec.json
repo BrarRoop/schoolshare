@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bean\\source\\repos\\schoolsharenew\\schoolshare.csproj": {}
+    "C:\\Users\\Bean\\source\\repos\\schoolshare\\schoolshare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bean\\source\\repos\\schoolsharenew\\schoolshare.csproj": {
+    "C:\\Users\\Bean\\source\\repos\\schoolshare\\schoolshare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bean\\source\\repos\\schoolsharenew\\schoolshare.csproj",
+        "projectUniqueName": "C:\\Users\\Bean\\source\\repos\\schoolshare\\schoolshare.csproj",
         "projectName": "schoolshare",
-        "projectPath": "C:\\Users\\Bean\\source\\repos\\schoolsharenew\\schoolshare.csproj",
+        "projectPath": "C:\\Users\\Bean\\source\\repos\\schoolshare\\schoolshare.csproj",
         "packagesPath": "C:\\Users\\Bean\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bean\\source\\repos\\schoolsharenew\\obj\\",
+        "outputPath": "C:\\Users\\Bean\\source\\repos\\schoolshare\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Bean\\AppData\\Roaming\\NuGet\\NuGet.Config",
